@@ -83,13 +83,13 @@ public class ExpenseService {
     }
 
     void verifyCategory(String category) {
-        if (category.isBlank()) {
+        if (category.isBlank() || category == null) {
             throw new IllegalArgumentException("Category can't be empty!");
         }
     }
 
     void verifyDescription(String description) {
-        if (description.isBlank()) {
+        if (description.isBlank() || description == null) {
             throw new IllegalArgumentException("Description can't be empty!");
         }
     }

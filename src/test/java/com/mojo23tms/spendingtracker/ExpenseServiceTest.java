@@ -1,6 +1,7 @@
 package com.mojo23tms.spendingtracker;
 
 import com.mojo23tms.spendingtracker.model.Expense;
+import com.mojo23tms.spendingtracker.repository.ExpenseRepository;
 import com.mojo23tms.spendingtracker.service.ExpenseService;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ public class ExpenseServiceTest {
 
     @BeforeEach
     public void setup() {
-        es = new ExpenseService();
+        es = new ExpenseService(new ExpenseRepository());
         es.addExpense(amount, category, description);
     }
 
@@ -105,7 +106,7 @@ public class ExpenseServiceTest {
 
     @Test
     public void test_validEmptyListResponse() {
-        ExpenseService es_empty = new ExpenseService();
+        ExpenseService es_empty = new ExpenseService(new ExpenseRepository());
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(es_empty.getAllExpenses())
                     .as("List is not empty!")
