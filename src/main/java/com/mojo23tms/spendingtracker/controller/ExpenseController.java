@@ -35,4 +35,10 @@ public class ExpenseController {
         service.deleteExpense(id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(path = "/{id}")
+    public Expense putExpense(@PathVariable long id, @RequestBody CreateExpenseRequest request) {
+        return service.updateExpenseById(id, request.amount(), request.category(), request.description());
+    }
+
 }

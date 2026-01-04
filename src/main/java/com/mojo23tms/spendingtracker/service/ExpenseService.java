@@ -52,7 +52,7 @@ public class ExpenseService {
         return repository.getExpenseList();
     }
 
-    public void updateExpenseById(long id, int amount, String category, String description) {
+    public Expense updateExpenseById(long id, int amount, String category, String description) {
         verifyAmount(amount);
         verifyCategory(category);
         verifyDescription(description);
@@ -61,6 +61,8 @@ public class ExpenseService {
         if (!isUpdated) {
             throw new NoSuchElementException("No expense with such ID");
         }
+
+        return updated;
     }
 
     public void deleteExpense(long id) {
